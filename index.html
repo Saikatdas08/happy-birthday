@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>শুভ জন্মদিন!</title>
+    <style>
+        :root {
+            --primary-pink: #ff4d6d;
+            --soft-bg: #fff0f3;
+            /* 92 BPM is approx 0.652 seconds per beat */
+            --heart-beat-speed: 0.652s; 
+        }
+
+        body { 
+            margin: 0; 
+            background: var(--soft-bg); 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            text-align: center; 
+            color: #4a1a23; 
+            overflow-x: hidden; 
+        }
+
+        /* Overlay */
+        #overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--primary-pink); display: flex; flex-direction: column;
+            justify-content: center; align-items: center; z-index: 1000; cursor: pointer;
+            transition: 1.5s cubic-bezier(0.65, 0.05, 0.36, 1);
+        }
+        .gift-box { font-size: 100px; animation: bounce 1.5s infinite; }
+        @keyframes bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+
+        .container { padding: 20px; display: none; opacity: 0; transition: 3s opacity; }
+        h1.bengali-title { font-size: 2.5rem; margin: 30px 0; color: var(--primary-pink); }
+
+        /* Sync Pumping Heart at 92 BPM */
+        .heart-container {
+            margin: 40px auto;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        .main-heart {
+            font-size: 80px;
+            color: var(--primary-pink);
+            display: inline-block;
+            filter: drop-shadow(0 0 15px rgba(255, 77, 109, 0.6));
+            /* Precise 92 BPM Animation */
+            animation: heartBeatSync var(--heart-beat-speed) infinite ease-in-out;
+        }
+        @keyframes heartBeatSync {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.2); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.1); }
+            60% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Photo Gallery */
+        .gallery {
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 25px; padding: 20px; max-width: 900px; margin: 0 auto;
+        }
+        .gallery img {
+            width: 100%; height: 280px; object-fit: cover;
+            border-radius: 20px; border: 8px solid white; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            opacity: 0;
+            /* Animation duration synced to heart rhythm */
+            transition: all var(--heart-beat-speed) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .img-1 { transform: translateX(-50px); }
+        .img-2 { transform: translateX(50px); }
+        .img-3 { transform: scale(0.8); }
+        .img-4 { transform: translateY(50px); }
+        .gallery img.show { opacity: 1; transform: translate(0) scale(1); }
+
+        /* Glassmorphism Poem */
+        .poem-section { 
+            margin: 40px auto; max-width: 650px; padding: 35px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(255, 77, 109, 0.1);
+            opacity: 0;
+            transition: opacity 2s ease-in;
+        }
+        .poem-line { font-size: 1.25rem; color: #333; line-height: 1.8; margin: 12px 0; }
+        .love-footer { font-size: 1.6rem; margin-top: 30px; color: var(--primary-pink); font-weight: bold; display: block; }
+
+        /* Floating Background Hearts */
+        .heart-bg { position: fixed; color: var(--primary-pink); pointer-events: none; z-index: -1; animation: float 6s linear infinite; }
+        @keyframes float { 0% { transform: translateY(110vh); opacity: 0; } 50% { opacity: 0.6; } 100% { transform: translateY(-10vh); opacity: 0; } }
+    </style>
+</head>
+<body>
+
+    <audio id="mySong" loop preload="auto"><source src="music.mp3" type="audio/mpeg"></audio>
+
+    <div id="overlay" onclick="openGift()">
+        <div class="gift-box">🎁</div>
+        <h2 style="color: white; font-family: sans-serif; margin-top: 20px; font-weight: 300;">tor ligga ekta surprise ache!</h2>
+        <p style="color: white; opacity: 0.7;">(Tap to open)</p>
+    </div>
+
+    <div class="container" id="mainContent">
+        <h1 class="bengali-title">শুভ জন্মদিন! ❤️</h1>
+        
+        <div class="gallery" id="photoGallery">
+            <img src="p1.jpg" class="img-1">
+            <img src="p2.jpg" class="img-2">
+            <img src="p3.jpg" class="img-3">
+            <img src="p4.jpg" class="img-4">
+        </div>
+
+        <div class="heart-container" id="pumpingHeart">
+            <span class="main-heart">❤️</span>
+        </div>
+
+        <div class="poem-section" id="poemContainer">
+            <div class="poem-line">সেই মন্দিরে দেখা হওয়া থেকে শুরু আমাদের গল্প,</div>
+            <div class="poem-line">WhatsApp-এর চ্যাটে রাত জাগা, খুনসুটি কত অল্প-স্বল্প!</div>
+            <div class="poem-line">JEE-র সেই কঠিন দিনগুলো হাতে হাত রেখে পেরিয়েছি,</div>
+            <div class="poem-line">দুজনে আজ NIT-তে, কত স্বপ্ন একসাথে বুনেছি।</div>
+            <div class="poem-line">তোর হাসিতেই আমার খুশি, তুই আমার প্রাণ,</div>
+            <div class="poem-line">তোর জন্যই গাইতে পারি নতুন কোনো গান।</div>
+            <div class="poem-line">হাজারো ঝগড়া আর মান-অভিমানেও তুই ছিলি পাশে,</div>
+            <div class="poem-line">আমার পৃথিবীটা আজও শুধু তোকেই ভালোবাসে।</div>
+            <div class="poem-line">সারাজীবন এভাবেই থাকিস আমার হাতটি ধরে,</div>
+            <div class="poem-line">ভালোবাসায় ভরিয়ে দেবো তোকে আপন করে।</div>
+            <span class="love-footer">অনেক ভালোবাসি তোমায়! ❤️</span>
+        </div>
+    </div>
+
+    <script>
+        const BEAT_MS = 652; // Sync with 92 BPM
+
+        function openGift() {
+            var audio = document.getElementById("mySong");
+            audio.play().catch(e => console.log("Audio blocked"));
+
+            document.getElementById('overlay').style.transform = 'translateY(-100%)';
+            
+            const content = document.getElementById('mainContent');
+            content.style.display = 'block';
+            setTimeout(() => {
+                content.style.opacity = '1';
+                // Start photo animation after 2 beats of the heart
+                setTimeout(animatePhotos, BEAT_MS * 2);
+            }, 800);
+
+            setInterval(createHeart, 600);
+        }
+
+        function animatePhotos() {
+            const images = document.querySelectorAll('#photoGallery img');
+            const poem = document.getElementById('poemContainer');
+            const heart = document.getElementById('pumpingHeart');
+            
+            images.forEach((img, index) => {
+                // Each photo appears exactly on a beat (every 3 beats for slow reveal)
+                setTimeout(() => {
+                    img.classList.add('show');
+                }, index * (BEAT_MS * 3)); 
+            });
+
+            // Poem appears after the last photo reveal
+            setTimeout(() => {
+                heart.style.opacity = '1';
+                poem.style.opacity = '1';
+                poem.scrollIntoView({ behavior: 'smooth' });
+            }, (images.length * (BEAT_MS * 3)) + BEAT_MS);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-bg');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
+    </script>
+</body>
+</html>
