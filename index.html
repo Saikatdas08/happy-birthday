@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>শুভ জন্মদিন!</title>
+    <title>শুভ জন্মদিন, প্রান্তিকা!</title>
     <style>
         :root {
             --primary-pink: #ff4d6d;
@@ -45,9 +45,19 @@
             color: var(--primary-pink);
             display: inline-block;
             filter: drop-shadow(0 0 15px rgba(255, 77, 109, 0.6));
-            /* Precise 92 BPM Animation */
             animation: heartBeatSync var(--heart-beat-speed) infinite ease-in-out;
         }
+
+        /* Prantika Name Style */
+        .birthday-wish {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-pink);
+            margin-top: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: heartBeatSync var(--heart-beat-speed) infinite ease-in-out;
+        }
+
         @keyframes heartBeatSync {
             0% { transform: scale(1); }
             15% { transform: scale(1.2); }
@@ -68,7 +78,6 @@
             border-radius: 20px; border: 8px solid white; 
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             opacity: 0;
-            /* Animation duration synced to heart rhythm */
             transition: all var(--heart-beat-speed) cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .img-1 { transform: translateX(-50px); }
@@ -117,25 +126,26 @@
 
         <div class="heart-container" id="pumpingHeart">
             <span class="main-heart">❤️</span>
+            <div class="birthday-wish">শুভ জন্মদিন, প্রান্তিকা!</div>
         </div>
 
         <div class="poem-section" id="poemContainer">
-            <div class="poem-line">সেই মন্দিরে দেখা হওয়া থেকে শুরু আমাদের গল্প,</div>
-            <div class="poem-line">WhatsApp-এর চ্যাটে রাত জাগা, খুনসুটি কত অল্প-স্বল্প!</div>
-            <div class="poem-line">JEE-র সেই কঠিন দিনগুলো হাতে হাত রেখে পেরিয়েছি,</div>
-            <div class="poem-line">দুজনে আজ NIT-তে, কত স্বপ্ন একসাথে বুনেছি।</div>
-            <div class="poem-line">তোর হাসিতেই আমার খুশি, তুই আমার প্রাণ,</div>
-            <div class="poem-line">তোর জন্যই গাইতে পারি নতুন কোনো গান।</div>
-            <div class="poem-line">হাজারো ঝগড়া আর মান-অভিমানেও তুই ছিলি পাশে,</div>
-            <div class="poem-line">আমার পৃথিবীটা আজও শুধু তোকেই ভালোবাসে।</div>
+            <div class="poem-line">আজকের এই বিশেষ দিনে শুধু তোমাকেই বলতে চাই,</div>
+            <div class="poem-line">প্রথম দেখার সেই মুহূর্তটা আজও আমার হৃদয়ে অমলিন হয়ে রয়।</div>
+            <div class="poem-line">সেই দিন থেকে আমার প্রতিটি স্পন্দনে মিশে আছো শুধু তুমি,</div>
+            <div class="poem-line">তোমার হাসিতেই খুঁজে পাই আমি আমার স্বপ্নের মরুভূমি।</div>
+            <div class="poem-line">JEE-র সেই কঠিন লড়াই থেকে NIT-র এই সুন্দর পথ চলা,</div>
+            <div class="poem-line">সবটুকু জুড়েই আছো তুমি, যেমন গোধূলি বেলায় সিঁদুর রাঙা মেলা।</div>
+            <div class="poem-line">কখনও ঝগড়া, কখনও মান, আবার কখনও গভীর ভালোবাসা,</div>
+            <div class="poem-line">তুমিই আমার শান্ত সুকোমল এক মুঠো সুখের আশা।</div>
             <div class="poem-line">সারাজীবন এভাবেই থাকিস আমার হাতটি ধরে,</div>
             <div class="poem-line">ভালোবাসায় ভরিয়ে দেবো তোকে আপন করে।</div>
-            <span class="love-footer">অনেক ভালোবাসি তোমায়! ❤️</span>
+            <span class="love-footer">অনেক ভালোবাসি তোমায়, প্রান্তিকা! ❤️</span>
         </div>
     </div>
 
     <script>
-        const BEAT_MS = 652; // Sync with 92 BPM
+        const BEAT_MS = 652; 
 
         function openGift() {
             var audio = document.getElementById("mySong");
@@ -147,7 +157,6 @@
             content.style.display = 'block';
             setTimeout(() => {
                 content.style.opacity = '1';
-                // Start photo animation after 2 beats of the heart
                 setTimeout(animatePhotos, BEAT_MS * 2);
             }, 800);
 
@@ -160,13 +169,11 @@
             const heart = document.getElementById('pumpingHeart');
             
             images.forEach((img, index) => {
-                // Each photo appears exactly on a beat (every 3 beats for slow reveal)
                 setTimeout(() => {
                     img.classList.add('show');
                 }, index * (BEAT_MS * 3)); 
             });
 
-            // Poem appears after the last photo reveal
             setTimeout(() => {
                 heart.style.opacity = '1';
                 poem.style.opacity = '1';
