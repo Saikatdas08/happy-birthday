@@ -24,7 +24,7 @@
             width: 100vw;
         }
 
-        /* --- FRONT PAGE --- */
+        /* --- AESTHETIC FRONT PAGE --- */
         #overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
@@ -60,7 +60,7 @@
         .glass-card h2 { font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin: 0 0 10px 0; }
         .glass-card p { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.9; }
 
-        /* --- CONTENT PAGE --- */
+        /* --- MAIN CONTENT --- */
         .container { padding: 10px; display: none; opacity: 0; transition: 1s opacity; width: 100%; }
         
         h1.bengali-title { 
@@ -70,13 +70,13 @@
             font-family: 'Dancing Script', cursive;
         }
 
+        /* Aesthetic Polaroid Photo Grid */
         .gallery {
             display: grid; 
             grid-template-columns: repeat(2, 1fr);
             gap: 15px; padding: 15px; max-width: 450px; margin: 0 auto;
         }
 
-        /* Aesthetic Photo Animation */
         .gallery img {
             width: 100%; height: 170px; object-fit: cover;
             border-radius: 12px; border: 6px solid white; 
@@ -104,6 +104,7 @@
             45% { transform: scale(1.06); }
         }
 
+        /* Poem Section */
         .poem-section { 
             margin: 20px auto 120px; 
             width: 94%;
@@ -141,7 +142,7 @@
 
         .love-footer.reveal { opacity: 1; }
 
-        /* Floating background elements */
+        /* Floating Objects (Hearts, Candles, Sparkles) */
         .floating { 
             position: fixed; pointer-events: none; z-index: 500; 
             animation: floatUp linear infinite; opacity: 0;
@@ -225,7 +226,7 @@
                 poemContainer.style.opacity = '1';
                 setTimeout(() => { 
                     poemContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    // START FLOATING OBJECTS AND POEM REVEAL TOGETHER
+                    // Start Floating objects (hearts, candles, sparkles) when text starts
                     setInterval(createFloatingElement, 500);
                     revealPoem();
                 }, 1000);
@@ -235,7 +236,7 @@
         function revealPoem() {
             const lines = document.querySelectorAll('.poem-line');
             const footer = document.getElementById('loveFooter');
-            const READING_DELAY = 3500; 
+            const READING_DELAY = 3500; // 3.5s delay for comfortable reading
 
             lines.forEach((line, index) => {
                 setTimeout(() => {
