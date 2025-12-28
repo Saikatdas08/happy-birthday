@@ -2,106 +2,154 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>শুভ জন্মদিন, প্রান্তিকা!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Hind+Siliguri:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-pink: #ff4d6d;
+            --dark-pink: #c9184a;
             --soft-bg: #fff0f3;
-            /* 92 BPM is approx 0.652 seconds per beat */
             --heart-beat-speed: 0.652s; 
         }
+
+        * { box-sizing: border-box; }
 
         body { 
             margin: 0; 
             background: var(--soft-bg); 
-            font-family: 'Segoe UI', Arial, sans-serif; 
+            font-family: 'Hind Siliguri', sans-serif; 
             text-align: center; 
             color: #4a1a23; 
-            overflow-x: hidden; 
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* Overlay */
+        /* Professional Mobile-Optimized Overlay */
         #overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--primary-pink); display: flex; flex-direction: column;
+            background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink));
+            display: flex; flex-direction: column;
             justify-content: center; align-items: center; z-index: 1000; cursor: pointer;
-            transition: 1.5s cubic-bezier(0.65, 0.05, 0.36, 1);
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            padding: 20px;
         }
-        .gift-box { font-size: 100px; animation: bounce 1.5s infinite; }
-        @keyframes bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        
+        .gift-box { 
+            font-size: clamp(80px, 20vw, 120px); 
+            animation: bounce 1.5s infinite ease-in-out;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+        }
 
-        .container { padding: 20px; display: none; opacity: 0; transition: 3s opacity; }
-        h1.bengali-title { font-size: 2.5rem; margin: 30px 0; color: var(--primary-pink); }
+        .overlay-text { color: white; margin-top: 30px; }
+        .overlay-text h2 { font-size: clamp(1.5rem, 6vw, 2.2rem); margin-bottom: 10px; font-weight: 300; }
+        .overlay-text p { font-size: 0.9rem; opacity: 0.8; letter-spacing: 2px; }
 
-        /* Sync Pumping Heart at 92 BPM */
-        .heart-container {
-            margin: 40px auto;
+        @keyframes bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+
+        .container { padding: 15px; display: none; opacity: 0; transition: 2s opacity; width: 100%; }
+        
+        h1.bengali-title { 
+            font-size: clamp(1.8rem, 8vw, 2.8rem); 
+            margin: 20px 0; 
+            color: var(--primary-pink);
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Responsive Gallery */
+        .gallery {
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px; padding: 10px; max-width: 800px; margin: 0 auto;
+        }
+        
+        @media (min-width: 600px) { .gallery { grid-template-columns: repeat(4, 1fr); gap: 20px; } }
+
+        .gallery img {
+            width: 100%; height: 200px; object-fit: cover;
+            border-radius: 12px; border: 4px solid white; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             opacity: 0;
-            transition: opacity 1s ease;
+            transition: all var(--heart-beat-speed) cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+        
+        @media (min-width: 600px) { .gallery img { height: 280px; } }
+        .gallery img.show { opacity: 1; transform: translate(0) scale(1); }
+
+        /* Heart & Name */
+        .heart-container { margin: 30px auto; opacity: 0; transition: opacity 1s ease; }
         .main-heart {
-            font-size: 80px;
+            font-size: 60px;
             color: var(--primary-pink);
             display: inline-block;
-            filter: drop-shadow(0 0 15px rgba(255, 77, 109, 0.6));
+            filter: drop-shadow(0 0 10px rgba(255, 77, 109, 0.4));
             animation: heartBeatSync var(--heart-beat-speed) infinite ease-in-out;
         }
 
-        /* Prantika Name Style */
         .birthday-wish {
-            font-size: 2rem;
+            font-size: clamp(1.4rem, 5vw, 2rem);
             font-weight: bold;
             color: var(--primary-pink);
-            margin-top: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-top: 10px;
+            font-family: 'Dancing Script', cursive;
             animation: heartBeatSync var(--heart-beat-speed) infinite ease-in-out;
         }
 
         @keyframes heartBeatSync {
             0% { transform: scale(1); }
-            15% { transform: scale(1.2); }
+            15% { transform: scale(1.15); }
             30% { transform: scale(1); }
-            45% { transform: scale(1.1); }
+            45% { transform: scale(1.08); }
             60% { transform: scale(1); }
             100% { transform: scale(1); }
         }
 
-        /* Photo Gallery */
-        .gallery {
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 25px; padding: 20px; max-width: 900px; margin: 0 auto;
-        }
-        .gallery img {
-            width: 100%; height: 280px; object-fit: cover;
-            border-radius: 20px; border: 8px solid white; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            opacity: 0;
-            transition: all var(--heart-beat-speed) cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .img-1 { transform: translateX(-50px); }
-        .img-2 { transform: translateX(50px); }
-        .img-3 { transform: scale(0.8); }
-        .img-4 { transform: translateY(50px); }
-        .gallery img.show { opacity: 1; transform: translate(0) scale(1); }
-
-        /* Glassmorphism Poem */
+        /* Poem Section Mobile-Optimized */
         .poem-section { 
-            margin: 40px auto; max-width: 650px; padding: 35px;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
+            margin: 30px auto 60px; 
+            width: 95%;
+            max-width: 600px; padding: 35px 20px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
             border-radius: 30px;
-            box-shadow: 0 20px 50px rgba(255, 77, 109, 0.1);
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.1);
             opacity: 0;
             transition: opacity 2s ease-in;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
-        .poem-line { font-size: 1.25rem; color: #333; line-height: 1.8; margin: 12px 0; }
-        .love-footer { font-size: 1.6rem; margin-top: 30px; color: var(--primary-pink); font-weight: bold; display: block; }
 
-        /* Floating Background Hearts */
-        .heart-bg { position: fixed; color: var(--primary-pink); pointer-events: none; z-index: -1; animation: float 6s linear infinite; }
-        @keyframes float { 0% { transform: translateY(110vh); opacity: 0; } 50% { opacity: 0.6; } 100% { transform: translateY(-10vh); opacity: 0; } }
+        .poem-line { 
+            font-size: clamp(1.1rem, 4.5vw, 1.4rem); 
+            color: #4a1a23; 
+            line-height: 2; 
+            margin: 15px 0; 
+            font-family: 'Hind Siliguri', sans-serif;
+            font-weight: 500;
+        }
+
+        .love-footer { 
+            font-size: clamp(1.4rem, 6vw, 1.8rem); 
+            margin-top: 30px; 
+            color: var(--primary-pink); 
+            font-family: 'Dancing Script', cursive;
+            display: block; 
+        }
+
+        /* Small Floating Elements (Hearts & Stars) */
+        .floating { 
+            position: fixed; 
+            pointer-events: none; 
+            z-index: -1; 
+            opacity: 0;
+            animation: floatUp linear infinite; 
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
     </style>
 </head>
 <body>
@@ -110,12 +158,14 @@
 
     <div id="overlay" onclick="openGift()">
         <div class="gift-box">🎁</div>
-        <h2 style="color: white; font-family: sans-serif; margin-top: 20px; font-weight: 300;">tor ligga ekta surprise ache!</h2>
-        <p style="color: white; opacity: 0.7;">(Tap to open)</p>
+        <div class="overlay-text">
+            <h2>tor ligga ekta surprise ache!</h2>
+            <p>Tap to open</p>
+        </div>
     </div>
 
     <div class="container" id="mainContent">
-        <h1 class="bengali-title">শুভ জন্মদিন! ❤️</h1>
+        <h1 class="bengali-title">Happy Birthday, Prantika! ❤️</h1>
         
         <div class="gallery" id="photoGallery">
             <img src="p1.jpg" class="img-1">
@@ -160,7 +210,8 @@
                 setTimeout(animatePhotos, BEAT_MS * 2);
             }, 800);
 
-            setInterval(createHeart, 600);
+            // Start floating background elements
+            setInterval(createFloatingElement, 400);
         }
 
         function animatePhotos() {
@@ -177,18 +228,28 @@
             setTimeout(() => {
                 heart.style.opacity = '1';
                 poem.style.opacity = '1';
-                poem.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => {
+                    poem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 500);
             }, (images.length * (BEAT_MS * 3)) + BEAT_MS);
         }
 
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart-bg');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 6000);
+        function createFloatingElement() {
+            const el = document.createElement('div');
+            el.classList.add('floating');
+            
+            // Randomly choose between a heart and a star
+            const symbols = ['❤️', '✨', '🌸', '💖', '⭐'];
+            el.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+            
+            el.style.left = Math.random() * 100 + 'vw';
+            // Smaller size for "little" elements
+            el.style.fontSize = (Math.random() * 8 + 12) + 'px'; 
+            el.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            el.style.filter = `blur(${Math.random() * 1}px)`;
+            
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 8000);
         }
     </script>
 </body>
