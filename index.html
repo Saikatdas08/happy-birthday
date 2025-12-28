@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>শুভ জন্মদিন, প্রান্তিকা!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Hind+Siliguri:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-pink: #ff4d6d;
@@ -12,117 +13,154 @@
             --heart-beat-speed: 0.652s; 
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body { 
             margin: 0; 
             background: var(--soft-bg); 
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            font-family: 'Hind Siliguri', sans-serif; 
             text-align: center; 
             color: #4a1a23; 
             overflow-x: hidden;
-            line-height: 1.6;
+            width: 100vw;
         }
 
-        /* Professional Front Page Overlay */
+        /* --- MOBILE OPTIMIZED FRONT PAGE --- */
         #overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, #ff4d6d, #c9184a);
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
             display: flex; flex-direction: column;
             justify-content: center; align-items: center; z-index: 1000; cursor: pointer;
             transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
-            padding: 20px;
         }
         
-        /* Floating Gift Box Animation */
         .gift-box { 
-            font-size: clamp(80px, 20vw, 120px); 
-            animation: floatGift 3s infinite ease-in-out;
-            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.2));
-            margin-bottom: 30px;
+            font-size: 100px; 
+            animation: floatingGift 3s infinite ease-in-out;
+            filter: drop-shadow(0 15px 20px rgba(0,0,0,0.2));
+            margin-bottom: 20px;
         }
 
-        @keyframes floatGift {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
+        @keyframes floatingGift {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
         }
 
-        /* Professional Instruction Card (Glassmorphism) */
-        .instruction-card {
+        .glass-card {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 25px 40px;
-            border-radius: 20px;
+            padding: 25px;
+            border-radius: 25px;
+            width: 85%;
+            max-width: 320px;
             color: white;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
-        .instruction-card h2 {
-            margin: 0 0 10px 0;
-            font-size: clamp(1.4rem, 5vw, 2rem);
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
+        .glass-card h2 { font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin: 0 0 10px 0; }
+        .glass-card p { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.9; }
 
-        .instruction-card p {
-            margin: 0;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            opacity: 0.9;
-        }
-
-        /* Rest of the content styles */
-        .container { padding: 15px; display: none; opacity: 0; transition: 2s opacity; width: 100%; }
+        /* --- CONTENT PAGE --- */
+        .container { padding: 10px; display: none; opacity: 0; transition: 1s opacity; width: 100%; }
         
         h1.bengali-title { 
-            font-size: clamp(1.8rem, 8vw, 2.8rem); 
+            font-size: 2.2rem; 
             margin: 20px 0; 
             color: var(--primary-pink);
-            font-weight: 700;
+            font-family: 'Dancing Script', cursive;
         }
 
+        /* Portrait-View Photo Grid */
         .gallery {
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
-            gap: 15px; padding: 10px; max-width: 800px; margin: 0 auto;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px; padding: 10px; max-width: 450px; margin: 0 auto;
         }
-        
+
         .gallery img {
-            width: 100%; height: 250px; object-fit: cover;
-            border-radius: 15px; border: 5px solid white; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%; height: 160px; object-fit: cover;
+            border-radius: 15px; border: 4px solid white; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             opacity: 0;
-            transition: all var(--heart-beat-speed) ease-out;
+            transform: scale(0.9);
+            transition: all 0.8s ease-out;
         }
         
         .gallery img.show { opacity: 1; transform: scale(1); }
 
-        .heart-container { margin: 30px auto; opacity: 0; transition: opacity 1s; }
+        .heart-container { margin: 20px auto; opacity: 0; transition: opacity 1s ease; }
         .main-heart {
-            font-size: 60px;
+            font-size: 50px;
             color: var(--primary-pink);
             display: inline-block;
-            animation: heartBeatSync var(--heart-beat-speed) infinite;
+            animation: heartBeatSync var(--heart-beat-speed) infinite ease-in-out;
+        }
+
+        .birthday-wish {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--primary-pink);
+            font-family: 'Dancing Script', cursive;
+            margin-top: 5px;
+            animation: heartBeatSync var(--heart-beat-speed) infinite ease-in-out;
         }
 
         @keyframes heartBeatSync {
-            0%, 100% { transform: scale(1); }
-            15% { transform: scale(1.2); }
+            0%, 100%, 60% { transform: scale(1); }
+            15% { transform: scale(1.12); }
+            45% { transform: scale(1.06); }
         }
 
+        /* Mobile Optimized Poem Section */
         .poem-section { 
-            margin: 40px auto; 
-            max-width: 600px; padding: 20px;
-            background: white; border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            opacity: 0; transition: 2s opacity;
+            margin: 20px auto 100px; 
+            width: 94%;
+            padding: 30px 15px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.1);
+            opacity: 0;
+            transition: opacity 1s ease-in;
         }
 
-        .poem-line { font-size: 1.2rem; color: #333; margin: 10px 0; }
-        .love-footer { font-size: 1.5rem; margin-top: 20px; color: var(--primary-pink); font-weight: bold; display: block; }
+        .poem-line { 
+            font-size: 1.1rem; 
+            color: #4a1a23; 
+            line-height: 1.8; 
+            margin: 18px 0; 
+            font-weight: 500;
+            opacity: 0; 
+            transform: translateY(15px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .poem-line.reveal { opacity: 1; transform: translateY(0); }
+
+        .love-footer { 
+            font-size: 1.5rem; 
+            margin-top: 30px; 
+            color: var(--primary-pink); 
+            font-family: 'Dancing Script', cursive;
+            display: block; 
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        .love-footer.reveal { opacity: 1; }
+
+        /* Floating background elements */
+        .floating { 
+            position: fixed; pointer-events: none; z-index: -1; 
+            animation: floatUp linear infinite; opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.4; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
     </style>
 </head>
 <body>
@@ -131,24 +169,25 @@
 
     <div id="overlay" onclick="openGift()">
         <div class="gift-box">🎁</div>
-        <div class="instruction-card">
-            <h2>tor ligga ekta surprise ache!</h2>
-            <p>Tap to reveal</p>
+        <div class="glass-card">
+            <h2>Prantika, ekta surprise ache!</h2>
+            <p>Tap to open</p>
         </div>
     </div>
 
     <div class="container" id="mainContent">
-        <h1 class="bengali-title">শুভ জন্মদিন, প্রান্তিকা! ❤️</h1>
+        <h1 class="bengali-title">Happy Birthday, Prantika! ❤️</h1>
         
         <div class="gallery" id="photoGallery">
-            <img src="p1.jpg" class="img-1">
-            <img src="p2.jpg" class="img-2">
-            <img src="p3.jpg" class="img-3">
-            <img src="p4.jpg" class="img-4">
+            <img src="p1.jpg">
+            <img src="p2.jpg">
+            <img src="p3.jpg">
+            <img src="p4.jpg">
         </div>
 
         <div class="heart-container" id="pumpingHeart">
             <span class="main-heart">❤️</span>
+            <div class="birthday-wish">শুভ জন্মদিন, প্রান্তিকা!</div>
         </div>
 
         <div class="poem-section" id="poemContainer">
@@ -162,7 +201,7 @@
             <div class="poem-line">তুমিই আমার শান্ত সুকোমল এক মুঠো সুখের আশা।</div>
             <div class="poem-line">সারাজীবন এভাবেই থাকিস আমার হাতটি ধরে,</div>
             <div class="poem-line">ভালোবাসায় ভরিয়ে দেবো তোকে আপন করে।</div>
-            <span class="love-footer">অনেক ভালোবাসি তোমায়, প্রান্তিকা! ❤️</span>
+            <span class="love-footer" id="loveFooter">অনেক ভালোবাসি তোমায়, প্রান্তিকা! ❤️</span>
         </div>
     </div>
 
@@ -171,34 +210,65 @@
 
         function openGift() {
             var audio = document.getElementById("mySong");
-            audio.play().catch(e => console.log("Audio play blocked by browser"));
+            audio.play().catch(e => console.log("Audio play blocked"));
 
             document.getElementById('overlay').style.transform = 'translateY(-100%)';
             
             const content = document.getElementById('mainContent');
             content.style.display = 'block';
-            setTimeout(() => {
-                content.style.opacity = '1';
-                setTimeout(animatePhotos, BEAT_MS * 2);
-            }, 800);
+            setTimeout(() => { content.style.opacity = '1'; animatePhotos(); }, 500);
+
+            // Fewer floating elements for mobile performance
+            setInterval(createFloatingElement, 600);
         }
 
         function animatePhotos() {
             const images = document.querySelectorAll('#photoGallery img');
-            const poem = document.getElementById('poemContainer');
+            const poemContainer = document.getElementById('poemContainer');
             const heart = document.getElementById('pumpingHeart');
             
             images.forEach((img, index) => {
-                setTimeout(() => {
-                    img.classList.add('show');
-                }, index * (BEAT_MS * 3)); 
+                setTimeout(() => { img.classList.add('show'); }, index * 700); 
             });
 
             setTimeout(() => {
                 heart.style.opacity = '1';
-                poem.style.opacity = '1';
-                poem.scrollIntoView({ behavior: 'smooth' });
-            }, (images.length * (BEAT_MS * 3)) + BEAT_MS);
+                poemContainer.style.opacity = '1';
+                setTimeout(() => { 
+                    poemContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    revealPoem();
+                }, 800);
+            }, (images.length * 700) + 300);
+        }
+
+        function revealPoem() {
+            const lines = document.querySelectorAll('.poem-line');
+            const footer = document.getElementById('loveFooter');
+            
+            lines.forEach((line, index) => {
+                setTimeout(() => {
+                    line.classList.add('reveal');
+                    // Mobile centering: scroll the new line into center of screen
+                    line.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, index * 1200); // 1.2s delay for better reading on mobile
+            });
+
+            setTimeout(() => {
+                footer.classList.add('reveal');
+                footer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, lines.length * 1200 + 500);
+        }
+
+        function createFloatingElement() {
+            const el = document.createElement('div');
+            el.classList.add('floating');
+            const symbols = ['❤️', '✨', '💖', '⭐'];
+            el.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.fontSize = (Math.random() * 8 + 12) + 'px'; 
+            el.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 7000);
         }
     </script>
 </body>
